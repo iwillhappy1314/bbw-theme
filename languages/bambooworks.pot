@@ -1,0 +1,155 @@
+# Copyright (C) 2017 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: _s 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2020-07-11 23:36+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: frontend\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: includes/fields.php:34
+msgid "Archive Settings"
+msgstr ""
+
+#: includes/fields.php:37 includes/fields.php:53
+msgid "Cover image"
+msgstr ""
+
+#: includes/fields.php:38
+msgid "Cover text"
+msgstr ""
+
+#: includes/fields.php:39
+msgid "Archive Title"
+msgstr ""
+
+#: includes/fields.php:40
+msgid "Archive Description"
+msgstr ""
+
+#: includes/fields.php:48
+msgid "Category Settings"
+msgstr ""
+
+#: includes/fields.php:54
+msgid "Banner Text"
+msgstr ""
+
+#: includes/fields.php:55
+msgid "Posts Per Page"
+msgstr ""
+
+#: includes/fields.php:61
+msgid "Page Settings"
+msgstr ""
+
+#: includes/fields.php:66
+msgid "Page Layouts"
+msgstr ""
+
+#: includes/fields.php:77
+msgid "Case Data"
+msgstr ""
+
+#: includes/fields.php:82
+msgid "Demo url"
+msgstr ""
+
+#: includes/fields.php:89
+msgid "Theme Options"
+msgstr ""
+
+#: includes/fields.php:91
+msgid "General Options"
+msgstr ""
+
+#: includes/fields.php:92
+msgid "Clean up useless menus for normal user"
+msgstr ""
+
+#: includes/fields.php:93
+msgid "Deny modify files in backend"
+msgstr ""
+
+#: includes/fields.php:95
+msgid "Footer Options"
+msgstr ""
+
+#: includes/fields.php:96
+msgid "Beian number"
+msgstr ""
+
+#: includes/fields.php:97
+msgid "Copyright text"
+msgstr ""
+
+#: includes/fields.php:99
+msgid "Code Option"
+msgstr ""
+
+#: includes/fields.php:100
+msgid "Code before </head>"
+msgstr ""
+
+#: includes/fields.php:101
+msgid "Code before </body>"
+msgstr ""
+
+#: includes/fields.php:111
+msgid "Menu Type"
+msgstr ""
+
+#: includes/fields.php:113
+msgid "Normal"
+msgstr ""
+
+#: includes/fields.php:114
+msgid "Render shortcode content"
+msgstr ""
+
+#: includes/fields.php:117
+msgid "Enter a shortcode"
+msgstr ""
+
+#: includes/template-tags.php:82
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: includes/template-tags.php:99
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: src/Elementor/Widgets/ServiceWidgets.php:37
+msgid "Widget Title"
+msgstr ""
+
+#: src/Elementor/Widgets/ServiceWidgets.php:84
+msgid "Content"
+msgstr ""
+
+#: src/Elementor/Widgets/ServiceWidgets.php:92
+msgid "URL to embed"
+msgstr ""
+
+#: src/Elementor/Widgets/ServiceWidgets.php:95
+msgid "https://your-link.com"
+msgstr ""
+
+#: templates/content-none.php:30
+#, php-format
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""

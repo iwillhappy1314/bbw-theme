@@ -1,0 +1,373 @@
+# Copyright (C) 2017 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: _s 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2024-12-20 14:53+0800\n"
+"PO-Revision-Date: 2024-12-20 14:56+0800\n"
+"Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-KeywordsList: ;_e;__;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: frontend\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: functions.php:193
+msgid "Top Banner Ad - Header"
+msgstr ""
+
+#: functions.php:195 functions.php:206 functions.php:228 functions.php:240
+#: functions.php:252
+msgid "Add widgets here to appear in your footer."
+msgstr ""
+
+#: functions.php:204
+msgid "Bottom Banner Ad - Header"
+msgstr ""
+
+#: functions.php:215
+msgid "Top new tickers Header"
+msgstr ""
+
+#: functions.php:217
+msgid "Add widgets here to appear in Top new tickers Header."
+msgstr ""
+
+#: functions.php:226
+msgid "Footer"
+msgstr "页脚"
+
+#: functions.php:238
+msgid "Page Sidebar"
+msgstr "显示侧边栏"
+
+#: functions.php:250
+msgid "Blog Sidebar"
+msgstr "博客侧边栏"
+
+#: inc/class-shortcode-elementor.php:45
+#, php-format
+msgid ""
+"The <strong>Elementor Header Footer</strong> plugin requires <strong><a "
+"href=\"%s\">Elementor</strong></a> plugin installed & activated."
+msgstr ""
+
+#: single-stock.php:67
+msgid "Previous Close"
+msgstr "前一收盘价"
+
+#: single-stock.php:72
+msgid "Market Cap."
+msgstr "市值"
+
+#: single-stock.php:77
+msgid "Volume / 30 day Avg."
+msgstr "交易量/30 天平均值"
+
+#: single-stock.php:82
+msgid "52 Week High/Low"
+msgstr "52 周最高/最低价"
+
+#: single-stock.php:87
+msgid "PE Ratio(TTM)"
+msgstr "市盈率(TTM)"
+
+#: single-stock.php:92
+msgid "Deviden Yield"
+msgstr "股息率"
+
+#: single-stock.php:103
+msgid "Secondary Listing"
+msgstr "第二交易所"
+
+#: single-stock.php:139
+msgid "Primary exchange: "
+msgstr "主要交易所："
+
+#: single-stock.php:140
+msgid "Secondary exchange: "
+msgstr "第二交易所"
+
+#: single-stock.php:144
+msgid "About"
+msgstr "关于"
+
+#: single-stock.php:161
+msgid "Stories"
+msgstr "动态"
+
+#: single-stock.php:162 single-stock.php:207 single-stock.php:271
+msgid "View All"
+msgstr "查看全部"
+
+#: single-stock.php:206
+msgid "Related"
+msgstr "相关文章"
+
+#: single-stock.php:270
+msgid "Press Release"
+msgstr "媒体报道"
+
+#: taxonomy-industry.php:43
+#, php-format
+msgid "%s older"
+msgstr ""
+
+#: taxonomy-industry.php:45
+#, php-format
+msgid "newer %s"
+msgstr ""
+
+#: template-parts/404.php:32
+msgid "Oops! That page can’t be found."
+msgstr "抱歉！此页面不存在。"
+
+#: template-parts/404.php:36
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr "这里好像什么都没有，试试搜索功能吧"
+
+#: template-parts/search.php:96
+msgid "It seems we can't find what you're looking for."
+msgstr "看来我们不能找到你要找的东西。请搜索一下试试吧。"
+
+#: templates/content-none.php:22
+msgid "Nothing Found"
+msgstr "无法找到任何内容"
+
+#: templates/content-none.php:31
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "准备好发表第一篇文章了吗？<a href=\"%1$s\">点击这里开始</a>。"
+
+#: templates/content-none.php:45
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr "抱歉，没有符合您搜索条件的结果。请换其它关键词再试。"
+
+#: templates/content-none.php:55
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr "看来我们不能找到你要找的东西。请搜索一下试试吧。"
+
+#, php-format
+#~ msgid "One thought on &ldquo;%1$s&rdquo;"
+#~ msgstr "&ldquo;%1$s&rdquo;上有 1 个评论"
+
+#~ msgid "Comments are closed."
+#~ msgstr "评论已关闭。"
+
+#~ msgid "Skip to content"
+#~ msgstr "跳至内容"
+
+#~ msgid "Menu"
+#~ msgstr "菜单"
+
+#~ msgid "Colors and Background"
+#~ msgstr "颜色和背景"
+
+#~ msgid "Archive Settings"
+#~ msgstr "存档设置"
+
+#~ msgid "Cover image"
+#~ msgstr "封面图像"
+
+#~ msgid "Cover text"
+#~ msgstr "封面文字"
+
+#~ msgid "Archive Title"
+#~ msgstr "存档标题"
+
+#~ msgid "Archive Description"
+#~ msgstr "存档描述"
+
+#~ msgid "Category Settings"
+#~ msgstr "分类设置"
+
+#~ msgid "Banner Text"
+#~ msgstr "横幅文本"
+
+#~ msgid "Posts Per Page"
+#~ msgstr "每页文章数"
+
+#~ msgid "Page Settings"
+#~ msgstr "页面设置"
+
+#~ msgid "Page Layouts"
+#~ msgstr "页面布局"
+
+#~ msgid "Case Data"
+#~ msgstr "案例数据"
+
+#~ msgid "Demo url"
+#~ msgstr "演示网址"
+
+#~ msgid "Theme Options"
+#~ msgstr "主题选项"
+
+#~ msgid "General Options"
+#~ msgstr "常规选项"
+
+#~ msgid "Clean up useless menus for normal user"
+#~ msgstr "清理后台菜单"
+
+#~ msgid "Deny modify files in backend"
+#~ msgstr "禁止在后台修改文件"
+
+#~ msgid "Beian number"
+#~ msgstr "备案号"
+
+#~ msgid "Copyright text"
+#~ msgstr "版权内容"
+
+#~ msgid "Code Option"
+#~ msgstr "代码选项"
+
+#~ msgid "Code before </head>"
+#~ msgstr "</head> 前代码"
+
+#~ msgid "Code before </body>"
+#~ msgstr "</body> 前代码"
+
+#~ msgid "Primary"
+#~ msgstr "主要"
+
+#~ msgid "Video"
+#~ msgstr "视频"
+
+#~ msgid "Video Tag"
+#~ msgstr "视频标签"
+
+#~ msgid "Shortcode"
+#~ msgstr "短代码"
+
+#~ msgid "Primary Widgets Area"
+#~ msgstr "主要小工具区域"
+
+#~ msgid "Add widgets here."
+#~ msgstr "在这里添加小工具。"
+
+#~ msgid "Top bar Widgets"
+#~ msgstr "顶部小工具区域"
+
+#~ msgid "Footer Widgets Area"
+#~ msgstr "页脚小工具区域"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#, php-format
+#~ msgid "Posted in %1$s"
+#~ msgstr "发表在 %1$s"
+
+#, php-format
+#~ msgid "Tagged %1$s"
+#~ msgstr "标签 %1$s"
+
+#, php-format
+#~ msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+#~ msgstr "<span class=\"screen-reader-text\">在 %s </span>发表评论"
+
+#, php-format
+#~ msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+#~ msgstr "编辑<span class=\"screen-reader-text\">%s</span>"
+
+#~ msgid "WooCommerce Widget Area"
+#~ msgstr "WooCommerce小工具区域"
+
+#~ msgid "Single Product Custom area"
+#~ msgstr "产品摘要小工具区域"
+
+#~ msgid "Cart Widgets Area"
+#~ msgstr "购物车小工具区域"
+
+#~ msgid "Checkout Widgets Area"
+#~ msgstr "结账小工具区域"
+
+#, php-format
+#~ msgid "Search Results for: %s"
+#~ msgstr "搜索结果: %s"
+
+#~ msgid "Widget Title"
+#~ msgstr "小工具标题"
+
+#~ msgid "Content"
+#~ msgstr "内容"
+
+#~ msgid "URL to embed"
+#~ msgstr "要嵌入的 URL"
+
+#~ msgid "https://your-link.com"
+#~ msgstr "https://your-link.com"
+
+#~ msgid "Product"
+#~ msgstr "产品"
+
+#~ msgid "Price"
+#~ msgstr "价格"
+
+#~ msgid "Quantity"
+#~ msgstr "数量"
+
+#~ msgid "Subtotal"
+#~ msgstr "小计"
+
+#~ msgid "Remove this item"
+#~ msgstr "删除此项"
+
+#~ msgid "Coupon:"
+#~ msgstr "优惠券："
+
+#~ msgid "Update cart"
+#~ msgstr "更新购物车"
+
+#~ msgid "Menu Type"
+#~ msgstr "菜单类型"
+
+#~ msgid "Normal"
+#~ msgstr "常规"
+
+#~ msgid "Render shortcode content"
+#~ msgstr "显示短代码"
+
+#~ msgid "Below Content Widgets  Area"
+#~ msgstr "内容底部小工具区域"
+
+#~ msgid "Shopping Cart"
+#~ msgstr "购物车"
+
+#~ msgid "Shipping and Checkout"
+#~ msgstr "运费和结算"
+
+#~ msgid "Confirmation"
+#~ msgstr "订单确认"
+
+#~ msgid "Colors"
+#~ msgstr "颜色"
+
+#~ msgid "WooCommerce Color Schema"
+#~ msgstr "WooCommerce 配色方案"
+
+#~ msgid "Single Product Page Settings"
+#~ msgstr "产品详情页面设置"
+
+#~ msgid "Primary color"
+#~ msgstr "主要颜色"
+
+#~ msgid "Columns of Gallery thumbnail"
+#~ msgstr "相册缩略图每行显示的图片数量"
+
+#~ msgid "Number of Related Products"
+#~ msgstr "显示的相关产品数量"

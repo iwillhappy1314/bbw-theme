@@ -1,0 +1,130 @@
+// ============================================================================
+// 配色
+// 这里是基础配色，主要需要修改的是背景颜色、边框颜色、文字颜色、其他的样式直接通过CSS修改或覆盖
+// ============================================================================
+
+@import "../fonts/icomoon/variables";
+
+// 基本颜色
+$black: hsl(0, 0%, 4%); //dark
+$black-bis: hsl(0, 0%, 7%);
+$black-ter: hsl(0, 0%, 14%);
+
+$grey-darker: hsl(0, 0%, 21%); //gray-900
+$grey-dark: hsl(0, 0%, 29%); //gray-800
+$grey: hsl(0, 0%, 48%); //gray-700
+$grey-light: hsl(0, 0%, 71%); //gray-600
+$grey-lighter: hsl(0, 0%, 86%); //gray-500
+
+$white-ter: hsl(0, 0%, 96%);
+$white-bis: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+
+$orange: #e53238; //red-600
+$yellow: #f5af02;
+$green: #86b817;
+$turquoise: hsl(171, 100%, 41%);
+$cyan: hsl(204, 86%, 53%);
+$blue: #0064d2;
+$purple: hsl(271, 100%, 71%);
+$red: #e53238;
+
+// 使用颜色
+$primary: #C90815;
+$secondary: $yellow;
+$embellishment: $orange;
+
+$light: $white-ter;
+$dark: $grey-darker;
+
+$info: $cyan;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$link: $primary;
+
+$body-background-color: rgba(31, 99, 209, 0.02);
+$highlight: #333;
+
+
+// ======================
+// 文字颜色
+// ======================
+$text-color: #383838;
+$text-dark: #000;
+$text-light: #666;
+$text-lighter: #aaa;
+$text-strong-color: 0;
+$text-mark-color: #fff;
+$text-mark-background-color: #ff0;
+$text-mute-color: #bbb;
+
+$text-base: #383838;
+$text-300: $text-color;
+$text-500: $text-color;
+$text-600: $text-color;
+$text-700: $text-color;
+
+$text-highlight: #fff;
+// ======================
+// 背景颜色
+// ======================
+//基础背景色，大面积背景使用
+$bg-base: #fff;
+$bg-100: #eee;
+$bg-200: darken($bg-100, 5%);
+$bg-300: darken($bg-100, 10%);
+$bg-400: darken($bg-100, 15%);
+
+//品牌背景色，和品牌色相同或相近
+$bg-highlight: $primary;
+
+
+// ======================
+// 边框颜色
+// ======================
+$border-base: #f3f3f3;
+$border-100: #ededed;
+$border-200: darken($border-base, 5%);
+$border-300: darken($border-base, 10%);
+$border-400: darken($border-base, 15%);
+
+$border-highlight: #666;
+
+// ======================
+// 字体家族
+// ======================
+$family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-monospace: Monaco, Consolas, "Courier New", monospace;
+$family-serif: "Noto Serif", Optima, Georgia, "Times New Roman", Times, serif;
+
+// ======================
+// 元素尺寸
+// ======================
+$dimensions: 64 128;
+$radius: 3px;
+$radius-rounded: 100px;
+
+// ======================
+// 宽度
+// ======================
+//
+$gap: 32px;
+
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1536px;
+
+$phone: $sm;
+$tablet: $md;
+$laptop: $lg;
+$desktop: $xl;
+$widescreen: $xxl;
+
+// 黄金比例
+$bronze: 1.333;
+$sliver: 1.414;
+$golden: 1.618;
+$platinum: 1.732;

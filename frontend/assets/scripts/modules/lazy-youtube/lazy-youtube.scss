@@ -1,0 +1,75 @@
+.lazyYT-container {
+  background-color: #000;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0 0 56.25%;
+  position: relative
+}
+
+.lazyYT-container iframe {
+  border: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%
+}
+
+.lazyYT-container .html5-title {
+  padding-left: 12px;
+  padding-right: 6px
+}
+
+.lazyYT-container .html5-title-text-wrapper {
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.lazyYT-container .html5-title-text {
+  color: #ccc;
+  font-size: 13px;
+  line-height: 30px;
+  text-decoration: none;
+  width: 100%
+}
+
+.lazyYT-container .html5-title-text:hover {
+  color: #fff;
+  text-decoration: underline
+}
+
+.ytp-thumbnail {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  padding-bottom: inherit
+}
+
+.ytp-large-play-button {
+  font-size: normal!important;
+  font-weight: 400!important;
+  height: 60px!important;
+  left: 50%!important;
+  line-height: 1!important;
+  margin: -29px 0 0 -42px!important;
+  opacity: .9;
+  padding: 0!important;
+  position: absolute;
+  top: 50%!important;
+  width: 86px!important
+}
+
+.ytp-large-play-button-svg {
+  fill: #1f1f1f;
+  opacity: .9
+}
+
+.lazyYT-image-loaded:hover .ytp-large-play-button-svg,.ytp-large-play-button:focus .ytp-large-play-button-svg {
+  fill: #cc181e;
+  opacity: 1
+}

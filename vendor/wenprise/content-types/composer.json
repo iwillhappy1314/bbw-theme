@@ -1,0 +1,70 @@
+{
+  "name": "wenprise/content-types",
+  "description": "Create WordPress content types and taxonomies more easier.",
+  "require": {
+    "php": ">=5.6",
+    "doctrine/inflector": "~1.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WenpriseContentTypes\\": "src/"
+    },
+    "classmap": [
+      "src"
+    ]
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amos Lee",
+      "email": "iwillhappy1314@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require-dev": {
+    "brianhenryie/strauss": "^0.11.0"
+  },
+  "scripts": {
+    "strauss": [
+      "vendor/bin/strauss"
+    ],
+    "post-install-cmd": [
+      "@strauss"
+    ],
+    "post-update-cmd": [
+      "@strauss"
+    ]
+  },
+  "extra": {
+    "strauss": {
+      "target_directory": "src/Vendor",
+      "namespace_prefix": "WenpriseContentTypes\\Vendor\\",
+      "classmap_prefix": "WenpriseContentTypes_Vendor",
+      "constant_prefix": "WenpriseContentTypes_",
+      "packages": [
+      ],
+      "override_autoload": {
+      },
+      "exclude_from_copy": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "exclude_from_prefix": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+          "/^psr.*$/"
+        ]
+      },
+      "namespace_replacement_patterns" : {
+      },
+      "delete_vendor_files": true
+    }
+  }
+}

@@ -1,0 +1,172 @@
+// 图表容器样式
+.stock-chart-container {
+  @apply w-full max-w-6xl mx-auto bg-white rounded-lg shadow-sm;
+
+  // 标题区域
+  .chart-header {
+    @apply p-4 border-b border-gray-100;
+
+    .index-badge {
+      @apply bg-red-600 text-white rounded-full w-8 h-8
+      flex items-center justify-center text-sm font-medium;
+    }
+
+    .price-info {
+      @apply mt-1 flex items-center gap-2;
+
+      .current-price {
+        @apply text-lg font-semibold;
+      }
+
+      .currency {
+        @apply text-gray-500 text-sm;
+      }
+
+      .price-change {
+        &.positive {
+          @apply text-green-500;
+        }
+
+        &.negative {
+          @apply text-red-500;
+        }
+      }
+    }
+  }
+
+  // 图表区域
+  .chart-area {
+    @apply p-4 h-80;
+
+    // Recharts 自定义样式覆盖
+    .recharts-cartesian-grid-horizontal line,
+    .recharts-cartesian-grid-vertical line {
+      @apply stroke-gray-200;
+    }
+
+    .recharts-tooltip-wrapper {
+      @apply shadow-lg;
+
+      .recharts-tooltip-item-list {
+        @apply p-2;
+      }
+    }
+
+    // 坐标轴样式
+    .recharts-x-axis,
+    .recharts-y-axis {
+      .recharts-text {
+        @apply text-gray-500 text-xs fill-current;
+      }
+
+      line {
+        @apply stroke-gray-300;
+      }
+    }
+  }
+
+  // 时间范围选择器
+  .time-range-selector {
+    @apply flex gap-4 p-4 border-t border-gray-100;
+
+    button {
+      @apply px-3 py-1 rounded text-sm transition-colors duration-200
+      hover:bg-gray-100 focus:outline-none focus:ring-2
+      focus:ring-red-500 focus:ring-opacity-50;
+
+      &.active {
+        @apply bg-gray-200 font-medium;
+      }
+    }
+  }
+}
+
+// 自定义工具类
+.chart-tooltip {
+  @apply bg-white rounded shadow-lg border border-gray-100 p-2;
+
+  &__label {
+    @apply text-gray-600 text-sm mb-1;
+  }
+
+  &__value {
+    @apply font-semibold;
+  }
+
+  &__time {
+    @apply text-xs text-gray-500 mt-1;
+  }
+}
+
+// 加载状态
+.chart-loading {
+  @apply flex items-center justify-center h-80;
+
+  .loading-spinner {
+    @apply w-8 h-8 border-4 border-gray-200 rounded-full;
+    border-top-color: theme('colors.red.600');
+    animation: spin 1s linear infinite;
+  }
+}
+
+// 错误状态
+.chart-error {
+  @apply flex flex-col items-center justify-center h-80 text-gray-500;
+
+  .error-icon {
+    @apply text-red-500 mb-2 text-2xl;
+  }
+
+  .error-message {
+    @apply text-sm;
+  }
+
+  .retry-button {
+    @apply mt-4 px-4 py-2 bg-red-600 text-white rounded
+    hover:bg-red-700 focus:outline-none focus:ring-2
+    focus:ring-red-500 focus:ring-opacity-50;
+  }
+}
+
+.recharts-cartesian-axis{
+  @apply hidden;
+}
+
+// 动画
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 响应式调整
+@media (max-width: theme('screens.sm')) {
+  .stock-chart-container {
+    .chart-header {
+      @apply flex-col;
+
+      .price-info {
+        @apply mt-2;
+      }
+    }
+
+    .time-range-selector {
+      @apply overflow-x-auto;
+
+      button {
+        @apply whitespace-nowrap;
+      }
+    }
+  }
+}
+
+// 打印样式
+@media print {
+  .stock-chart-container {
+    @apply shadow-none;
+
+    .time-range-selector {
+      @apply hidden;
+    }
+  }
+}

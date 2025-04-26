@@ -1,0 +1,152 @@
+// 渐变背景
+@mixin linear-gradient($direction, $color-stops...) {
+    background: nth(nth($color-stops, 1), 1); // fallback
+    background: linear-gradient($direction, $color-stops);
+}
+
+// 滚动条
+@mixin scrollbar {
+    &::-webkit-scrollbar { /* [2] */
+        width: $scrollbar-width;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb { /* [2] */
+        border-radius: $scrollbar-thumb-border-radius;
+        background-color: $scrollbar-thumb-background-color;
+    }
+}
+
+/**
+ * 三角箭头
+ */
+%arrow {
+    border: 3px solid transparent;
+    border-radius: 2px;
+    border-right: 0;
+    border-top: 0;
+    content: " ";
+    display: block;
+    height: 0.625em;
+    margin-top: -0.4375em;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    width: 0.625em;
+}
+
+
+@mixin clearfix {
+    *zoom: 1;
+
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+
+@mixin button-base() {
+    transform: scale(1);
+    transition: all .2s ease;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 1.5;
+
+    // 默认宽高和圆角
+    border-radius: 3px;
+    padding: calc(.5em - 1px) 1em;
+}
+
+@mixin button-bg($base, $hover, $active) {
+    background-color: $base;
+
+    &:hover {
+        background-color: $hover;
+    }
+
+    &:active {
+        background-color: $active;
+    }
+}
+
+@mixin button-border($base, $hover, $active) {
+    border-width: 1px;
+    border-color: $base;
+
+    &:hover {
+        border-color: $hover;
+    }
+
+    &:active {
+        border-color: $active;
+    }
+}
+
+@mixin button-text($base, $hover, $active) {
+    color: $base;
+
+    &:hover {
+        color: $hover;
+    }
+
+    &:active {
+        color: $active;
+    }
+}
+
+@mixin between($min-breakpoint, $max-breakpoint) {
+    @media (min-width: $min-breakpoint + 1) and (max-width: $max-breakpoint - 1) {
+        @content;
+    }
+}
+
+@mixin below($max-breakpoint) {
+    @media (max-width: $max-breakpoint - 1) {
+        @content;
+    }
+}
+
+@mixin above($max-breakpoint) {
+    @media (min-width: $max-breakpoint) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (max-width: $phone) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (max-width: $widescreen) {
+        @content;
+    }
+}
+

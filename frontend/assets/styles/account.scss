@@ -1,0 +1,531 @@
+//===================================
+// 我的账户页面
+//===================================
+
+@import "variables";
+@import "base/functions";
+@import "base/mixins";
+@import "woocommerce/mixins";
+@import "woocommerce/variables";
+@import "woocommerce/select2";
+
+$bg-color: $bg-base;
+$text-color: $text-base;
+$border-color: $border-base;
+$border-highlight: $border-highlight;
+
+.woocommerce-account {
+    @apply bg-gray-100;
+
+    .woocommerce {
+        @include clearfix;
+    }
+
+    ol.commentlist.notes li.note {
+        p.meta {
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .description p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul.digital-downloads {
+        margin-left: 0;
+        padding-left: 0;
+
+        li {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+
+            &::before {
+                @include iconbefore("");
+            }
+
+            .count {
+                float: right;
+            }
+        }
+    }
+
+}
+
+
+table.my_account_orders {
+    .button {
+        @apply text-sm;
+        border-radius: 2px;
+    }
+
+    .order-actions {
+        @apply text-right;
+
+        .button {
+            margin: 0.125em 0 0.125em 0.25em;
+        }
+    }
+}
+
+
+// 所有订单表格
+.woocommerce-orders-table {
+    &__header {
+        @apply text-sm;
+        padding: 10px 0 10px 30px !important;
+        @apply px-4 font-medium text-gray-700 bg-gray-200;
+        &:last-child {
+            @apply text-right;
+            padding-right: 16px !important;
+        }
+    }
+
+    &__row {
+        @apply border-t border-b border-gray-200;
+    }
+
+    &__cell {
+        @apply text-sm whitespace-nowrap align-middle text-left font-medium;
+        padding: 20px 0 20px 30px;
+        color: #354052;
+    }
+}
+
+
+.woocommerce-MyAccount {
+
+    &-navigation {
+        @apply w-full;
+
+        ul {
+            @apply px-6 py-4 flex flex-wrap m-0;
+            background-color: $bg-color;
+
+            li {
+                @apply w-1/2 flex-shrink-0;
+
+                @screen sm{
+                  @apply w-1/3;
+                }
+
+                @screen md{
+                  @apply w-full;
+                }
+
+                a {
+                    @apply px-2 py-1 block;
+                    color: $text-color;
+                }
+
+                &:hover,
+                &.is-active {
+                    @apply bg-transparent;
+                    a {
+                        @apply font-medium;
+                        color: $primary;
+                    }
+
+                    &:after{
+                        color: $primary;
+                    }
+                }
+
+            }
+        }
+    }
+
+    &-content {
+        @apply p-8 shadow border-t-4 w-full mt-6;
+        background-color: $bg-color;
+        border-color: $border-highlight;
+
+        @screen md {
+            @apply mt-0 float-right;
+            width: 78%;
+            min-height: 448px;
+        }
+
+        form {
+            button[type=submit] {
+                @include button-bg($primary, darken($primary, 3%), darken($primary, 6%));
+                @include button-border(darken($primary, 3%), darken($primary, 6%), darken($primary, 9%));
+                @apply mt-4 text-white;
+                border-radius: 3px;
+            }
+        }
+    }
+}
+
+div.woocommerce-MyAccount-navigation {
+    @apply shadow;
+    @screen md {
+        @apply w-1/5 float-left;
+    }
+}
+
+.woocommerce-MyAccount-downloads {
+    td,
+    th {
+        vertical-align: top;
+        text-align: center;
+
+        &:first-child {
+            text-align: left;
+        }
+
+        &:last-child {
+            text-align: left;
+        }
+
+        .woocommerce-MyAccount-downloads-file::before {
+            content: "↓";
+            display: inline-block;
+        }
+    }
+}
+
+
+.woocommerce-order-downloads,
+.woocommerce-customer-details,
+.woocommerce-order-details {
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.woocommerce-order-downloads__title {
+    @apply mb-2;
+}
+
+.woocommerce-customer-details {
+    address {
+        font-style: normal;
+        margin-bottom: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom-width: 2px;
+        border-right-width: 2px;
+        text-align: left;
+        width: 100%;
+        padding: 6px 12px;
+    }
+
+    .woocommerce-customer-details--phone,
+    .woocommerce-customer-details--email {
+        margin-bottom: 0;
+        padding-left: 1.5em;
+    }
+
+    .woocommerce-customer-details--phone::before {
+        @include iconbefore("");
+
+        margin-left: -1.5em;
+        line-height: 1.75;
+        position: absolute;
+    }
+
+    .woocommerce-customer-details--email::before {
+        @include iconbefore("");
+
+        margin-left: -1.5em;
+        line-height: 1.75;
+        position: absolute;
+    }
+}
+
+.woocommerce-Address {
+    @apply mt-4;
+    border: 1px solid $border-color;
+    background-color: $bg-color;
+
+    @screen -md{
+        & + .woocommerce-Address {
+            @apply mt-8;
+        }
+    }
+
+    &-title {
+        @apply px-4 py-3 flex justify-between leading-normal;
+        border-bottom: 1px solid $border-color;
+
+        h3 {
+            @apply flex-grow text-base m-0;
+        }
+
+        .edit {
+            @apply text-sm underline;
+            margin-top: 2px;
+        }
+    }
+
+    address {
+        @apply p-4;
+    }
+}
+
+#customer_details {
+    @apply mb-8 p-0;
+
+    .col-1,
+    .col-2 {
+        @apply w-full float-none;
+    }
+}
+
+
+//===================================
+// 用户资料卡片
+//===================================
+.wc-profile-card {
+    @apply text-center border-b p-8;
+    background-color: $bg-color;
+    border-color: $border-color;
+
+    img {
+        @apply mx-auto;
+    }
+
+    &__name {
+        @apply mt-2;
+    }
+
+    @screen -lg{
+        @apply flex items-center p-4;
+        img {
+            @apply m-0;
+            width: 80px;
+        }
+        &__name {
+            @apply pl-4 mt-0;
+        }
+    }
+
+    @screen md {
+        @apply p-6;
+    }
+
+    @screen lg {
+        @apply p-8;
+    }
+}
+
+
+/**
+ * Order page */
+ul.order_details {
+    margin-top: 1px;
+    margin-left: 1px;
+    @apply text-sm flex flex-wrap flex-grow mb-6 list-none;
+
+    li {
+        margin-top: -1px;
+        margin-left: -1px;
+        @apply border-t border-b border-gray-300 uppercase leading-none list-none text-sm py-3 w-full flex-grow;
+
+        @screen sm {
+            @apply w-1/2 py-4;
+        }
+
+        @screen md {
+            @apply w-1/5;
+        }
+
+        @screen lg {
+            @apply w-1/5;
+        }
+
+        strong {
+            @apply block text-base normal-case leading-normal mt-1 break-all;
+        }
+    }
+}
+
+
+/**
+ * Password strength meter */
+.woocommerce-password-strength {
+    text-align: center;
+    font-weight: 600;
+    padding: 3px 0.5em;
+    font-size: 1em;
+
+    &.strong {
+        background-color: #c1e1b9;
+        border-color: #83c373;
+    }
+
+    &.short {
+        background-color: #f1adad;
+        border-color: #e35b5b;
+    }
+
+    &.bad {
+        background-color: #fbc5a9;
+        border-color: #f78b53;
+    }
+
+    &.good {
+        background-color: #ffe399;
+        border-color: #ffc733;
+    }
+}
+
+.woocommerce-password-hint {
+    margin: 0.5em 0 0;
+    display: block;
+}
+
+
+.woocommerce-orders-table__cell-order-actions {
+    .button {
+        & + .button {
+            @apply ml-2;
+        }
+    }
+}
+
+.woocommerce-bacs-bank-details {
+    margin-top: 2em;
+}
+
+.wc-bacs-bank-details-heading {
+    @apply mb-3;
+}
+
+.wc-bacs-bank-details-account-name {
+    @apply font-bold;
+}
+
+.woocommerce{
+    .lost_reset_password .button,
+    .woocommerce-form-register__submit,
+    .woocommerce-form-login__submit {
+        @include button-bg($primary, darken($primary, 3%), darken($primary, 6%));
+        @include button-border(darken($primary, 3%), darken($primary, 6%), darken($primary, 9%));
+        color: #fff;
+    }
+}
+
+.order-again{
+    @apply mt-6;
+}
+
+.woocommerce-privacy-policy-text {
+    @apply text-gray-600 mb-4;
+    font-size: 13px;
+}
+
+#customer_login {
+    p {
+        @apply mb-3;
+    }
+
+    a {
+        @apply underline;
+    }
+}
+
+.woocommerce-MyAccount-navigation-link {
+    display: flex;
+    align-items: center;
+
+    a {
+        order: 2;
+        flex-grow: 1;
+    }
+
+    &:after {
+        @apply text-gray-500;
+        order: 1;
+    }
+
+    &.is-active {
+        &:after {
+            color: $primary;
+        }
+    }
+
+    &--dashboard {
+        &:after {
+            content: $icon-speedometer2;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--orders {
+        &:after {
+            content: $icon-bars2;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--payment-methods {
+        &:after {
+            content: $icon-wallet;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--downloads {
+        &:after {
+            content: $icon-download;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--edit-address {
+        &:after {
+            content: $icon-map;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--edit-account {
+        &:after {
+            content: $icon-user;
+            font-family: icomoon, sans-serif;
+        }
+    }
+
+    &--customer-logout {
+        &:after {
+            content: $icon-box-arrow-left;
+            font-family: icomoon, sans-serif;
+        }
+    }
+}
+
+
+.woocommerce-OrderUpdates{
+    @apply mt-2;
+    li{
+        @apply relative mb-4 pl-6;
+        &:before{
+            @apply block absolute left-0 bg-green-700;
+            content: '';
+            width: 14px;
+            height: 14px;
+            border-radius: 999px;
+            top: 12px;
+        }
+
+        &:not(:last-child){
+            &:after {
+                @apply block absolute bg-gray-300;
+                content: '';
+                width: 3px;
+                height: calc(100% - 8px);
+                left: 5px;
+                top: 32px;
+            }
+        }
+    }
+}
+
+.woocommerce-OrderUpdate-meta{
+    @apply text-xl font-medium;
+}

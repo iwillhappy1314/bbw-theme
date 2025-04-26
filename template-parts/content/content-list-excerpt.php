@@ -1,0 +1,10 @@
+<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
+  <div class="post-inner">
+    <div class="entry-content">
+    	<?php show_the_child_category(get_the_category(get_the_ID())); ?>
+      	<h3><a href="<?php echo esc_url( get_permalink() ); ?>" class="entry-title"><?php echo clearNbsp(get_the_title()); ?></a></h3>
+      	<div class="entry-meta"><?php hello_posted_on(); ?></div>
+      	<?php echo eodhistoricaldata(get_the_ID()); ?>
+    </div>
+  </div>
+</article>

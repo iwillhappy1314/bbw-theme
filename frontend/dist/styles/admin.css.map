@@ -1,0 +1,1 @@
+{"version":3,"file":"dist/styles/admin.css","mappings":"AAAA,8BACI,eACJ,C","sources":["webpack://wenprise-frontend-tool/./assets/styles/admin.scss"],"sourcesContent":["#adminmenu .wp-menu-image img{\n    padding: 6px 0 0;\n}"],"names":[],"sourceRoot":""}

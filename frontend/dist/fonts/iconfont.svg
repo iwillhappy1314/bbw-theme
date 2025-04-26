@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2023 by original authors @ fontello.com</metadata>
+<defs>
+<font id="iconfont" horiz-adv-x="1000" >
+<font-face font-family="iconfont" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="grid-fill" unicode="&#xe800;" d="M153 722a42 42 0 0 1-22-18l-5-8-1-90 0-89h208v208l-87 0c-71 0-88-1-93-3m264-101v-104h166v208h-166v-104m250 0v-104h208v86c0 98 0 97-12 110-13 12-12 12-110 12h-86v-104m-542-271v-83h208v166h-208v-83m292 0v-83h166v166h-166v-83m250 0v-83h208v166h-208v-83m-542-256l1-90 5-8c2-4 7-10 10-12 12-9 12-9 106-9h86v208h-208l0-89m292-15v-104h166v208h-166v-104m250 0v-104h86c98 0 97 0 110 12 12 13 12 12 12 110v86h-208v-104" horiz-adv-x="1000" />
+
+<glyph glyph-name="layout-grid-fill" unicode="&#xe801;" d="M111 722a42 42 0 0 1-22-18l-5-8 0-152-1-152h375v333l-170 0c-144 0-171-1-177-3m431-164v-166h375v149c0 167 0 159-13 172-13 13-2 12-193 12h-169v-167m-458-402l0-152 5-8c2-4 7-10 10-12 13-9 5-9 190-9h169v333h-375l1-152m458-14v-167h169c191 0 180-1 193 12 13 14 13 5 13 173v148h-375v-166" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

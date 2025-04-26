@@ -1,0 +1,87 @@
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/popover";
+
+.rs-popover__wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.rs-popover__title {
+  font-size: 24px;
+  line-height: 36px;
+  text-decoration: none;
+  color: rgb(228, 68, 68);
+  text-align: center;
+  padding: 15px 0;
+}
+
+.rs-popover__content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 10px;
+  left: -308px;
+  transform: translate(0, 10px);
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.rs-popover__content:before {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  right: -7px;
+  top: 8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #fff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.rs-popover__content:after {
+  position: absolute;
+  z-index: -2;
+  content: "";
+  right: -9px;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-left: 9px solid #ddd;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.rs-popover__wrapper:hover .rs-popover__content {
+  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -20px);
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+//避免鼠标稍微一动，popover 就消失
+.rs-popover__placeholder {
+  height: 60px;
+  width: 80px;
+  position: absolute;
+  right: -79px;
+  top: 0;
+}
