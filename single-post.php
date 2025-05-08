@@ -59,7 +59,25 @@ while ( have_posts() ) :
 					<div class="entry-meta"><?php hello_posted_on(); ?></div>
 
                     <div class="flex items-center mt-2 gap-6">
-                        <?php echo eodhistoricaldata(get_the_ID()); ?>
+                        <?php $eod = get_field('eodhistoricaldata', get_the_ID()); ?>
+
+                        <div class="relative">
+                            <?php
+                            if ($eod) {
+                                $stock_code = bbw_extract_stock_code($eod);
+
+                                if($stock_code[0]){
+                                    $stock_post = get_page_by_title($stock_code[0], 'OBJECT', 'stock');
+                                    if($stock_post){
+                                        echo '<a style="width: 170px;display: block;height: 20px;position: absolute;" target="_blank" href="'. get_permalink($stock_post->ID) .'">';
+                                        echo '';
+                                        echo '</a>';
+                                    }
+                                }
+                            }
+                            ?>
+                            <?php echo eodhistoricaldata(get_the_ID()); ?>
+                        </div>
 
                         <?= bbw_follow_button(get_the_ID()); ?>
                     </div>

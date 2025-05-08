@@ -134,8 +134,15 @@ function bbw_follow_button($post_id) {
     if ($eod) {
         $stock_code = bbw_extract_stock_code($eod);
 
-        return do_shortcode('[bbw_subscribe_button article_title=' . $stock_code[0] . ']');
+        if($stock_code[0]){
+            $stock_post = get_page_by_title($stock_code[0], 'OBJECT', 'stock');
+            if($stock_post){
+                return do_shortcode('[bbw_subscribe_button article_title=' . $stock_code[0] . ']');
+            }
+        }
     }
+
+    return '';
 }
 
 if ( ! function_exists( 'show_the_child_category' ) ) {
