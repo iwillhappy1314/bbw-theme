@@ -58,7 +58,11 @@ while ( have_posts() ) :
 
 					<div class="entry-meta"><?php hello_posted_on(); ?></div>
 
-					<?php echo eodhistoricaldata(get_the_ID()); ?>
+                    <div class="flex items-center mt-2 gap-6">
+                        <?php echo eodhistoricaldata(get_the_ID()); ?>
+
+                        <?= bbw_follow_button(get_the_ID()); ?>
+                    </div>
 
 					<?php if ( get_post_thumbnail_id() ):?>
 						<div class="entry-thumbnail"><?php  echo get_the_post_thumbnail(get_the_ID(), 'full'); ?></div>

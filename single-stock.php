@@ -60,7 +60,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                             </div>
                         </div>
                         <div>
-                            <div id="stock-chart-container" data-type="<?= bbw_stock_is_negative($stock_id) ? 'down' : 'up'; ?>" class="h-20" data-id="<?= $stock_id; ?>"></div>
+                            <div id="stock-chart-container" data-type="<?= bbw_stock_yearly_is_negative($stock_id) ? 'down' : 'up'; ?>" class="h-20" data-id="<?= $stock_id; ?>"></div>
                         </div>
                     </div>
 
@@ -283,14 +283,14 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                         ]
                     ];
 
-                    $related_comanies = wp_list_pluck(get_posts($args), 'ID');
+                    $related_companies = wp_list_pluck(get_posts($args), 'ID');
                 }
 
                 // 2. 通过相关公司获取相关股票
                 $related_stocks = [];
 
-                if (!empty($related_comanies)) {
-                    foreach ($related_comanies as $related_company) {
+                if (!empty($related_companies)) {
+                    foreach ($related_companies as $related_company) {
                         $stock = get_posts(
                             [
                                 'post_type'      => 'stock',

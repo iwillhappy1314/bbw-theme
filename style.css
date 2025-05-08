@@ -1854,9 +1854,9 @@ body.single-post .entry-content-container a:not([class]) {
   padding-left: 0;
   padding-right: 0;
 }
-.single-post .entry-header .entry-eod {
- margin-top: 10px;
-}
+/*.single-post .entry-header .entry-eod {*/
+/* margin-top: 10px;*/
+/*}*/
 .single-post .entry-header .entry-meta {
   color: #505050;
   font-size: 14px;

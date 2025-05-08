@@ -20,9 +20,6 @@ const FinancialChart = () => {
     const postId = container?.dataset?.id;
     const type = container?.dataset?.type;
 
-    // 根据 type 设置颜色
-    setChartColor(type === 'up' ? '#52c41a' : '#ff4d4f');
-
     if (!postId) {
       setError('Post ID not found');
       setLoading(false);
@@ -37,6 +34,9 @@ const FinancialChart = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+
+        // 根据 type 设置颜色
+        setChartColor(data.positive === true ? '#52c41a' : '#ff4d4f');
 
         // 处理历史数据
         const parsedHistoricalData = data.historicalData ? JSON.parse(data.historicalData) : [];

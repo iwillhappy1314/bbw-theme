@@ -124,9 +124,18 @@ if ( ! function_exists( 'eodhistoricaldata' ) ) {
 	function eodhistoricaldata($post_id) {
 		$eod = get_field('eodhistoricaldata', $post_id);
     	if ($eod) {
-    		return '<div class="entry-eod">'.do_shortcode($eod).'</div>';
+            return '<div class="entry-eod">' . do_shortcode($eod) . '</div>';
     	}
 	}
+}
+
+function bbw_follow_button($post_id) {
+    $eod = get_field('eodhistoricaldata', $post_id);
+    if ($eod) {
+        $stock_code = bbw_extract_stock_code($eod);
+
+        return do_shortcode('[bbw_subscribe_button article_title=' . $stock_code[0] . ']');
+    }
 }
 
 if ( ! function_exists( 'show_the_child_category' ) ) {

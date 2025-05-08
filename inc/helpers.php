@@ -138,6 +138,15 @@ function bbw_stock_is_negative($post_id){
 }
 
 
+function bbw_stock_yearly_is_negative($post_id){
+    $change            = get_post_meta($post_id, '_stock_change', true);
+    $change_percentage = get_post_meta($post_id, '_stock_change_percentage', true);
+
+    // 判断涨跌
+    return $change < 0 || $change_percentage < 0;
+}
+
+
 function bbw_stock_change_html($post_id)
 {
     $change            = get_post_meta($post_id, '_stock_change', true);

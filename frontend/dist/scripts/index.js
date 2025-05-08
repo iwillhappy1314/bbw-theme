@@ -466,9 +466,6 @@ var FinancialChart = function FinancialChart() {
     var container = document.getElementById('stock-chart-container');
     var postId = container === null || container === void 0 || (_container$dataset = container.dataset) === null || _container$dataset === void 0 ? void 0 : _container$dataset.id;
     var type = container === null || container === void 0 || (_container$dataset2 = container.dataset) === null || _container$dataset2 === void 0 ? void 0 : _container$dataset2.type;
-
-    // 根据 type 设置颜色
-    setChartColor(type === 'up' ? '#5d853a' : '#ef4444');
     if (!postId) {
       setError('Post ID not found');
       setLoading(false);
@@ -496,6 +493,9 @@ var FinancialChart = function FinancialChart() {
               return response.json();
             case 9:
               data = _context.sent;
+              // 根据 type 设置颜色
+              setChartColor(data.positive === true ? '#52c41a' : '#ff4d4f');
+
               // 处理历史数据
               parsedHistoricalData = data.historicalData ? JSON.parse(data.historicalData) : [];
               processedData = parsedHistoricalData.sort(function (a, b) {
@@ -510,21 +510,21 @@ var FinancialChart = function FinancialChart() {
                 };
               });
               setChartData(processedData);
-              _context.next = 18;
+              _context.next = 19;
               break;
-            case 15:
-              _context.prev = 15;
+            case 16:
+              _context.prev = 16;
               _context.t0 = _context["catch"](0);
               setError(_context.t0.message);
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               setLoading(false);
-              return _context.finish(18);
-            case 21:
+              return _context.finish(19);
+            case 22:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 15, 18, 21]]);
+        }, _callee, null, [[0, 16, 19, 22]]);
       }));
       return function fetchData() {
         return _ref.apply(this, arguments);
