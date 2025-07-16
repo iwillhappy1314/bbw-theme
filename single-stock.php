@@ -6,6 +6,8 @@
  * @package HelloElementor
  */
 
+use BbwStockData\Models\RssModel;
+
 if (! defined('ABSPATH')) {
     exit;
 }
@@ -355,16 +357,33 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                 </div>
             </div>
 
-            <div class="postgrid-wrapper layout4 mt-8">
-                <div class="postgrid-heading">
-                    <h2><?= __('Press Release', 'wprs'); ?></h2>
-                    <a href="<?= home_url('/prnews/?company=' . $company_name . '&stock=' . $stock_code); ?>"><?= __('View All', 'wprs'); ?> >></a>
+            <?php
+            $keywords = get_post_meta($stock_id, 'businesswire_keyword', true);
+
+            // 构建并执行查询
+            $query = RssModel::query()->where('title', 'LIKE', "%$stock_code%")
+                             ->orWhere('title', 'LIKE', "%$keywords%")
+                             ->orWhere('description', 'LIKE', "%$company_name%")
+                             ->orWhere('description', 'LIKE', "%$keywords%")
+                             ->limit(1);
+
+            $items = $query->get()->toArray();
+            ?>
+
+            <?php if ( !empty($items) ) : ?>
+
+                <div class="postgrid-wrapper layout4 mt-8">
+                    <div class="postgrid-heading">
+                        <h2><?= __('Press Release', 'wprs'); ?></h2>
+                        <a href="<?= home_url('/prnews/?company=' . $company_name . '&stock=' . $stock_code); ?>"><?= __('View All', 'wprs'); ?> >></a>
+                    </div>
+
+                    <div>
+                        <?= do_shortcode('[pr_newswire_feed limit="6" show_desc="true" stock_id="' . $stock_id . '" stock="' . $stock_code . '" company="' . $company_name . '"]'); ?>
+                    </div>
                 </div>
 
-                <div>
-                    <?= do_shortcode('[pr_newswire_feed limit="6" show_desc="true" stock_id="' . $stock_id . '" stock="' . $stock_code . '" company="' . $company_name . '"]'); ?>
-                </div>
-            </div>
+            <?php endif; ?>
     </main>
 
 <?php endwhile; ?>

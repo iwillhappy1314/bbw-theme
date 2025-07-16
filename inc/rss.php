@@ -13,12 +13,12 @@ class PRNewswireRSS
         $this->create_database_table();
 
         // 添加定时任务钩子
-        add_action('prn_rss_update_cron', [$this, 'update_feed_items']);
+        // add_action('prn_rss_update_cron', [$this, 'update_feed_items']);
 
         // 注册定时任务
-        if ( ! wp_next_scheduled('prn_rss_update_cron')) {
-            wp_schedule_event(time(), 'hourly', 'prn_rss_update_cron');
-        }
+        // if ( ! wp_next_scheduled('prn_rss_update_cron')) {
+        //     wp_schedule_event(time(), 'hourly', 'prn_rss_update_cron');
+        // }
 
         // 注册短代码
         add_shortcode('pr_newswire_feed', [$this, 'display_feed_shortcode']);
@@ -100,6 +100,7 @@ class PRNewswireRSS
                                   ->orWhere('title', 'LIKE', "%$keywords%")
                                   ->orWhere('description', 'LIKE', "%$company%")
                                   ->orWhere('description', 'LIKE', "%$keywords%")
+                                  ->orderByDesc('created_at')
                                   ->limit($limit);
 
         $items = $query->get();
@@ -153,14 +154,14 @@ class PRNewswireRSS
     // 管理页面内容
     public function admin_page(): void
     {
-        // 手动更新按钮处理
-        if (isset($_POST[ 'update_feed' ]) && check_admin_referer('update_prn_feed')) {
-            if ($this->update_feed_items()) {
-                echo '<div class="notice notice-success"><p>Feed updated successfully!</p></div>';
-            } else {
-                echo '<div class="notice notice-error"><p>Failed to update feed.</p></div>';
-            }
-        }
+        // // 手动更新按钮处理
+        // if (isset($_POST[ 'update_feed' ]) && check_admin_referer('update_prn_feed')) {
+        //     if ($this->update_feed_items()) {
+        //         echo '<div class="notice notice-success"><p>Feed updated successfully!</p></div>';
+        //     } else {
+        //         echo '<div class="notice notice-error"><p>Failed to update feed.</p></div>';
+        //     }
+        // }
 
         // 管理页面HTML
         ?>

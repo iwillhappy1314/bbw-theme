@@ -284,7 +284,7 @@ require TEMPLATE_DIRECTORY. '/inc/class-walker_category_custom.php';
 
 require_once(get_theme_file_path('vendor/autoload.php'));
 require_once(get_theme_file_path('inc/setup.php'));
-require_once(get_theme_file_path('inc/rss.php'));
+// require_once(get_theme_file_path('inc/rss.php'));
 require_once(get_theme_file_path('inc/rss-page.php'));
 require_once(get_theme_file_path('inc/helpers.php'));
 
