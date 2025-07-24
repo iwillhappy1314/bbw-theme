@@ -80,8 +80,8 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                         <div class="block">
                             <div class="text-gray-600 text-xs whitespace-nowrap mb-1"><?= __('Volume / 30 day Avg.', 'wprs'); ?></div>
                             <div class="text-sm">
-                                <?= bbw_format_number(get_post_meta($stock_id, '_stock_volume', true)); ?> /
-                                <?= bbw_format_number(get_post_meta($stock_id, '_stock_30day_avg', true)); ?>
+                                <?= get_post_meta($stock_id, '_stock_volume', true) !== 'NA' ? bbw_format_number(get_post_meta($stock_id, '_stock_volume', true)) : 'NA'; ?> /
+                                <?= get_post_meta($stock_id, '_stock_30day_avg', true) !== '' ? bbw_format_number(get_post_meta($stock_id, '_stock_30day_avg', true)) : ''; ?>
                             </div>
                         </div>
 

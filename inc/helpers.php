@@ -48,6 +48,11 @@ if ( ! function_exists('bambooworks_assets')) {
 }
 
 
+/**
+ * @param $post_id
+ *
+ * @return string
+ */
 function bbw_format_stock_timestamp($post_id)
 {
     // 获取时间戳和 GMT 偏移
@@ -129,6 +134,11 @@ function bbw_str_replace_first($search, $replace, $subject)
 }
 
 
+/**
+ * @param $post_id
+ *
+ * @return bool
+ */
 function bbw_stock_is_negative($post_id){
     $change            = get_post_meta($post_id, '_stock_change', true);
     $change_percentage = get_post_meta($post_id, '_stock_change_percentage', true);
@@ -138,6 +148,11 @@ function bbw_stock_is_negative($post_id){
 }
 
 
+/**
+ * @param $post_id
+ *
+ * @return bool
+ */
 function bbw_stock_yearly_is_negative($post_id){
     $change            = get_post_meta($post_id, '_stock_change', true);
     $change_percentage = get_post_meta($post_id, '_stock_change_percentage', true);
@@ -147,6 +162,11 @@ function bbw_stock_yearly_is_negative($post_id){
 }
 
 
+/**
+ * @param $post_id
+ *
+ * @return string
+ */
 function bbw_stock_change_html($post_id)
 {
     $change            = get_post_meta($post_id, '_stock_change', true);
@@ -178,7 +198,12 @@ function bbw_stock_change_html($post_id)
 }
 
 
-
+/**
+ * @param $value
+ * @param $decimals
+ *
+ * @return string
+ */
 function bbw_format_number($value, $decimals = 1)
 {
     // 如果值为空或0，直接返回"0"
@@ -197,7 +222,7 @@ function bbw_format_number($value, $decimals = 1)
     $magnitude = min($magnitude, count($units) - 1);
 
     // 计算显示的数值
-    $val = $value / pow($k, $magnitude);
+    $val = (float)$value / pow($k, $magnitude);
 
     // 如果值小于10，保留指定小数位数，否则取整
     if ($val < 10) {
@@ -208,6 +233,12 @@ function bbw_format_number($value, $decimals = 1)
 }
 
 
+/**
+ * @param $market_cap
+ * @param $decimal_places
+ *
+ * @return string
+ */
 function bbw_format_market_cap($market_cap, $decimal_places = 2)
 {
     if (empty($market_cap)) {
@@ -237,7 +268,11 @@ function bbw_format_market_cap($market_cap, $decimal_places = 2)
 }
 
 
-
+/**
+ * @param $stock_id
+ *
+ * @return int|\WP_Post|null
+ */
 function bbw_get_secondary_listing($stock_id)
 {
     $company = wp_get_post_terms($stock_id, 'corporation', true);
