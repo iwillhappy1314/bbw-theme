@@ -15,11 +15,15 @@ if (! defined('ABSPATH')) {
 get_header();
 $stock_id   = get_queried_object_id();
 $company_id = get_post_meta($stock_id, 'company', true);
-
 $stock   = get_post($stock_id);
 $company = get_post($company_id);
 
-$company_name = $company->post_title;
+$company_name = get_post_meta($company_id, '_full_name', true);
+
+if(!$company_name){
+    $company_name = $company->post_title;
+}
+
 $stock_code   = $stock->post_title;
 
 $stock_currency = get_post_meta($stock_id, '_stock_currency', true);
@@ -35,13 +39,19 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                 <div class="block col-span-3">
 
                     <div class="flex flex-wrap lg:flex-nowrap items-center gap-4 mb-4 lg:mb-8 o-company">
-                        <div class="max-w-24 inline-flex items-center">
-                            <?php if (has_post_thumbnail($company_id)) {
-                                echo get_the_post_thumbnail($company_id, 'full');
-                            } else {
-                                echo '<img class="h-[34px]" src="' . get_post_meta($company_id, '_stock_logo_url', true) . '" />';
-                            } ?>
-                        </div>
+
+                        <?php if (has_post_thumbnail($company_id)) { ?>
+                            <div class="max-w-24 inline-flex items-center">
+                                <?php echo get_the_post_thumbnail($company_id, 'full'); ?>
+                            </div>
+                        <?php } else { ?>
+                            <div class="max-w-24 inline-flex items-center">
+                                <?php if(get_post_meta($company_id, '_stock_logo_url', true) && get_post_meta($company_id, '_stock_logo_url', true) !== 'https://eodhd.com'): ?>
+                                    <?php echo '<img class="h-[34px]" src="' . get_post_meta($company_id, '_stock_logo_url', true) . '" />'; ?>
+                                <?php endif; ?>
+                            </div>
+                       <?php } ?>
+
                         <h2 class="text-3xl mb-0"><?= $company_name ?> (<?php the_title(); ?>)</h2>
 
                         <?= do_shortcode('[bbw_subscribe_button]'); ?>
@@ -92,7 +102,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
 
                         <div class="block">
                             <div class="text-gray-600 text-xs whitespace-nowrap mb-1"><?= __('PE Ratio(TTM)', 'wprs'); ?></div>
-                            <div class="text-sm"><?= get_post_meta($stock_id, '_stock_pe_ratio', true); ?></div>
+                            <div class="text-sm"><?= get_post_meta($stock_id, '_stock_pe_ratio', true) ? get_post_meta($stock_id, '_stock_pe_ratio', true) : '—'; ?></div>
                         </div>
 
                         <div class="block">
@@ -102,7 +112,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                                     <?= get_post_meta($stock_id, '_stock_dividend_yield', true); ?>%
                                 </div>
                             <?php else : ?>
-                                <div class="text-sm">No dividend</div>
+                                <div class="text-sm">—</div>
                             <?php endif; ?>
                         </div>
 
@@ -142,13 +152,15 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
 
                     <div class="border-0 border-l border-solid border-green-600 pl-2">
                         <?php if (! empty($sectors) && ! is_wp_error($sectors)) : ?>
-                            <a href="<?= get_term_link($sectors[0]); ?>"><?= $sectors[0]->name ?></a>
+<!--                            <a href="--><?php //= get_term_link($sectors[0]); ?><!--">--><?php //= $sectors[0]->name ?><!--</a>-->
+                            <?= $sectors[0]->name ?>
                         <?php endif; ?>
                     </div>
 
                     <div class="border-0 border-l border-solid border-blue-600 pl-2 mt-1">
                         <?php if (! empty($sub_industries) && ! is_wp_error($sub_industries)) : ?>
-                            <a href="<?= get_term_link($sub_industries[0]); ?>"><?= $sub_industries[0]->name ?></a>
+<!--                            <a href="--><?php //= get_term_link($sub_industries[0]); ?><!--">--><?php //= $sub_industries[0]->name ?><!--</a>-->
+                            <?= $sub_industries[0]->name ?>
                         <?php endif; ?>
                     </div>
 
@@ -169,19 +181,66 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                             ?>
 
                             <?= bbw_str_replace_first($company_name, "<a target=_blank href='$url'>$company_name</a>", $company_description); ?>
-                            <a href="<?= get_permalink($company_id); ?>">More</a>
+                            <a href="#" id="rs-more-link">More</a>
+                        </div>
+                    </div>
+
+                    <div id="rs-about-modal" class="rs-modal">
+                        <div class="rs-modal-content">
+                            <span class="rs-close-button">&times;</span>
+                            <p id="rs-full-about-text"><?= $company->post_excerpt; ?></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+
+        <script >
+          document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('rs-about-modal');
+            const moreLink = document.getElementById('rs-more-link');
+            const closeButton = document.getElementsByClassName('rs-close-button')[0];
+
+            // Function to open the modal
+            function openModal(event) {
+              event.preventDefault(); // Prevent default link behavior
+              modal.classList.add('is-active'); // Add the class to show and fade in
+            }
+
+            // Function to close the modal
+            function closeModal() {
+              modal.classList.remove('is-active'); // Remove the class to hide and fade out
+            }
+
+            // When the user clicks on "More", open the modal
+            moreLink.addEventListener('click', openModal);
+
+            // When the user clicks on "x", close the modal
+            closeButton.addEventListener('click', closeModal);
+
+            // When the user clicks anywhere outside of the modal content, close it
+            window.addEventListener('click', function(event) {
+              if (event.target === modal) { // Check if the clicked element is the modal backdrop itself
+                closeModal();
+              }
+            });
+
+            // Optional: Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+              if (event.key === 'Escape' && modal.classList.contains('is-active')) {
+                closeModal();
+              }
+            });
+          });
+        </script>
+
         <div class="mt-6 lg:mt-8">
             <?php $company_corporate = wp_get_post_terms($stock_id, 'corporation'); ?>
 
             <div class="postgrid-heading border-0  border-t-[2px] pt-3 border-solid border-green-900">
                 <h2><?= __('Stories', 'wprs'); ?></h2>
-                <a target=_blank href="<?= (! is_wp_error($company_corporate) && $company_corporate) ? get_term_link($company_corporate[0]) : '#'; ?>">
+                <a target=_blank href="<?= home_url('stock-stories/?stock_code=' . $stock_code); ?>">
                     <?= __('View All', 'wprs'); ?> >>
                 </a>
             </div>
@@ -237,10 +296,12 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
 
             <div>
                 <?php
+
                 // 1. 通过当前股票的公司获取相关公司
                 // 2. 通过相关公司获取相关股票
                 // 3. 通过相关股票获取相关文章
-                $related_comanies = get_post_meta($company_id, '_related_company', true);
+                $related_companies = get_post_meta($company_id, 'related_company', true);
+
                 $sectors = wp_get_post_terms($company_id, 'industry', [
                     'parent' => 0,
                 ]);
@@ -251,7 +312,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                 ]);
 
                 // 如果没有相关公司，通过子行业获取相关公司
-                if (empty($related_comanies)) {
+                if (empty($related_companies)) {
                     $args = [
                         'post_type'      => 'company',
                         'post__not_in'   => [$company_id],
@@ -266,11 +327,11 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                         ]
                     ];
 
-                    $related_comanies = wp_list_pluck(get_posts($args), 'ID');
+                    $related_companies = wp_list_pluck(get_posts($args), 'ID');
                 }
 
                 // 如果没有相关公司，通过行业获取相关公司
-                if (empty($related_comanies)) {
+                if (empty($related_companies)) {
                     $args = [
                         'post_type'      => 'company',
                         'post__not_in'   => [$company_id],
@@ -311,16 +372,18 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                     }
                 }
 
+                $related_stocks = array_filter($related_stocks);
+
                 // 3. 通过相关股票获取相关文章
                 $meta_queries = [
                     'relation' => 'OR'
                 ];
 
                 foreach ($related_stocks as $related_stock) {
-                    $stock_code = get_post($related_stock)->post_title;
+                    $_related_stock_code = get_post($related_stock)->post_title;
                     $meta_queries[] = [
                         'key'   => 'eodhistoricaldata',
-                        'value' => $stock_code,
+                        'value' => $_related_stock_code,
                         'compare' => "LIKE",
                     ];
                 }
@@ -358,13 +421,9 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
             </div>
 
             <?php
-            $keywords = get_post_meta($stock_id, 'businesswire_keyword', true);
 
             // 构建并执行查询
-            $query = RssModel::query()->where('title', 'LIKE', "%$stock_code%")
-                             ->orWhere('title', 'LIKE', "%$keywords%")
-                             ->orWhere('description', 'LIKE', "%$company_name%")
-                             ->orWhere('description', 'LIKE', "%$keywords%")
+            $query = RssModel::query()->where('company_id', '=', "$company_id")
                              ->limit(1);
 
             $items = $query->get()->toArray();
@@ -375,11 +434,11 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                 <div class="postgrid-wrapper layout4 mt-8">
                     <div class="postgrid-heading">
                         <h2><?= __('Press Release', 'wprs'); ?></h2>
-                        <a href="<?= home_url('/prnews/?company=' . $company_name . '&stock=' . $stock_code); ?>"><?= __('View All', 'wprs'); ?> >></a>
+                        <a href="<?= home_url('/prnews/?company=' . $company_id . '&stk=' . $stock_code); ?>"><?= __('View All', 'wprs'); ?> >></a>
                     </div>
 
                     <div>
-                        <?= do_shortcode('[pr_newswire_feed limit="6" show_desc="true" stock_id="' . $stock_id . '" stock="' . $stock_code . '" company="' . $company_name . '"]'); ?>
+                        <?= do_shortcode('[pr_newswire_feed limit="5" show_desc="true" stock_id="' . $stock_id . '" stock="' . $stock_code . '" company_id="' . $company_id . '"]'); ?>
                     </div>
                 </div>
 

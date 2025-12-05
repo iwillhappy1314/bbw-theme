@@ -28,7 +28,7 @@ define('TEMPLATE_URL', get_template_directory_uri() . '-master-child24');
 function hello_elementor_child_enqueue_scripts() {
 	wp_register_style( 'elementor-icons', plugins_url('elementor/assets/lib/eicons/css/elementor-icons.min.css') );
 	wp_enqueue_style( 'elementor-icons' );
-	
+
 	wp_enqueue_style(
 		'hello-elementor-child-style',
 		get_stylesheet_directory_uri() . '/style.css?v='.microtime(),
@@ -52,7 +52,7 @@ function hello_elementor_child_enqueue_scripts() {
 	) );
  	wp_enqueue_script( 'my_loadmore' );
 }
-add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 ); 
+add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 
 
 
@@ -332,3 +332,66 @@ function bbw_get_first_paragraph($post_id) {
     // 如果匹配到第一个段落，则返回该段落内容
     return isset($matches[1]) ? $matches[1] : '';
 }
+
+
+add_action('init',function () {
+    global $wp_post_types;
+    $wp_post_types['company']->cap->create_posts = 'do_not_allow';
+    $wp_post_types['company']->cap->delete_posts = 'do_not_allow';
+});
+
+
+add_filter('acf/prepare_field/name=_company_place_holder', function ($field) {
+    global $post;
+
+    if ( ! $post ) {
+        return $field;
+    }
+
+    // 这里是你真实保存数据的 meta_key
+    $meta_key = 'company';
+    $company_id = get_post_meta($post->ID, $meta_key, true);
+
+    if($company_id){
+        $company = get_post($company_id);
+
+        // 读取现有 meta 值（可以换成 get_field()，看你是 ACF 字段还是普通 meta）
+        $field['value'] = $company->post_title . '('. $company_id . ')';
+
+        // 设为只读 / 禁用，防止被编辑和保存
+        $field['readonly'] = 1;  // 后台输入框只读
+        $field['disabled'] = 1;  // 提交时不会带上这个字段
+    }
+
+    return $field;
+});
+
+// 防止 ACF 去更新这个展示字段的值（保险起见）
+add_filter('acf/update_value/name=_company_place_holder', function ($value, $post_id, $field) {
+    // 直接返回 false 或原值，不做任何更新
+    return null;
+}, 10, 3);
+
+
+/**
+ * 删除 company 文章时，删除对应的 RSSModel 数据
+ */
+add_action('before_delete_post', function ($post_id) {
+
+    // 只处理你的自定义 post type
+    if (get_post_type($post_id) !== 'company') {
+        return;
+    }
+
+    try {
+        // 删除所有 company_id = $post_id 的记录
+        RssModel::query()
+            ->where('company_id', $post_id)
+            ->delete();
+
+        error_log("已删除 RssModel 中 company_id = $post_id 的数据");
+
+    } catch (Exception $e) {
+        error_log("删除 RssModel 数据失败: " . $e->getMessage());
+    }
+});

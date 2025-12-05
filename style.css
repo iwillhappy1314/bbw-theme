@@ -3339,3 +3339,75 @@ body .mc-horizontal .yikes-easy-mc-form .yikes-easy-mc-submit-button {
     padding-bottom: 68%;
   }
 }
+
+.single-post .bbw-subscribe-button{
+  padding: .15rem .75rem;
+}
+
+/* Basic Modal Styles */
+.rs-modal {
+  /* ... (existing styles like position, z-index, background-color) ... */
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+
+  /* Fade-in/out specific properties */
+  visibility: hidden; /* Hidden by default, but allows transition */
+  opacity: 0; /* Starts fully transparent */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+  display: flex; /* Keep display flex so justify/align-items work when visible */
+}
+
+/* Class to show the modal (when active) */
+.rs-modal.is-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.rs-modal-content {
+  /* ... (existing styles) ... */
+  background-color: #fff;
+  margin: auto;
+  padding: 32px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 8px;
+  position: relative;
+
+  /* Initial state for content fade-in (optional, but good for subtle effect) */
+  transform: translateY(-20px); /* Start slightly above its final position */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  opacity: 0; /* Start hidden */
+}
+
+/* When modal is active, content moves to final position and fades in */
+.rs-modal.is-active .rs-modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Close Button */
+.rs-close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.rs-close-button:hover,
+.rs-close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
