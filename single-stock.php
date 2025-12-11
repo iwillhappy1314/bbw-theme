@@ -18,7 +18,7 @@ $company_id = get_post_meta($stock_id, 'company', true);
 $stock   = get_post($stock_id);
 $company = get_post($company_id);
 
-$company_name = get_post_meta($company_id, '_full_name', true);
+$company_name = get_post_meta($company_id, '_stock_company_name', true);
 
 if(!$company_name){
     $company_name = $company->post_title;

@@ -81,55 +81,47 @@ function bbw_format_stock_timestamp($post_id)
 
 function bbw_str_replace_first($search, $replace, $subject)
 {
-    // 基础清理
     $search = trim($search);
     if ($search === '') {
         return $subject;
     }
 
-    // 公司名称后缀映射
-    $variations = array(
-        'Ltd' => 'Limited',
-        'Limited' => 'Ltd',
-        'Ltd.' => 'Limited',
-        'Limited.' => 'Ltd'
-    );
+    // 1. 准备所有可能的搜索词变体 (处理 Ltd/Limited)
+    $search_variants = [];
+    $search_variants[] = $search; // 原始词
 
-    // 清理并准备搜索字符串
-    $search_clean = str_replace(array(',', '.'), '', $search);
-    $subject_clean = str_replace(array(',', '.'), '', $subject);
+    // 处理 Ltd/Limited 互换
+    if (stripos($search, 'Ltd') !== false || stripos($search, 'Limited') !== false) {
+        $search_variants[] = preg_replace('/\bLtd\.?\b/i', 'Limited', $search);
+        $search_variants[] = preg_replace('/\bLimited\b/i', 'Ltd', $search);
+    }
+    $search_variants = array_unique($search_variants);
 
-    // 尝试直接匹配
-    $pos = stripos($subject_clean, $search_clean);
+    // 2. 遍历变体进行正则匹配
+    foreach ($search_variants as $variant) {
+        //核心修复逻辑：将搜索词转换为灵活的正则模式
+        // a. 转义特殊字符
+        $pattern = preg_quote($variant, '/');
 
-    // 如果直接匹配失败，尝试替换后缀后匹配
-    if ($pos === false) {
-        foreach ($variations as $variant => $full) {
-            // 创建两个版本的搜索字符串
-            $search_with_variant = preg_replace('/\b(Ltd|Limited)(\.)?$/i', $variant, $search_clean);
-            $search_with_full = preg_replace('/\b(Ltd|Limited)(\.)?$/i', $full, $search_clean);
+        // b. 将空格替换为 "允许空格、逗号、点" 的正则模式
+        // 这里的逻辑是：搜索词里的空格，在原文中可以是 "空格"、"逗号+空格"、"点+空格" 等
+        $pattern = str_replace(' ', '[\s,\.]+', $pattern);
 
-            // 尝试两个版本的匹配
-            $pos_variant = stripos($subject_clean, $search_with_variant);
-            if ($pos_variant !== false) {
-                // 在原始字符串中找到对应位置
-                $match_length = strlen($search_with_variant);
-                return substr_replace($subject, $replace, $pos_variant, $match_length);
-            }
+        // c. 构建最终正则：/单词/i (i=忽略大小写, limit=1 只替换一次)
+        // 使用 \b 单词边界防止匹配到单词的一部分 (可选，视需求而定，去掉 \b 更宽松)
+        $regex = '/' . $pattern . '/i';
 
-            $pos_full = stripos($subject_clean, $search_with_full);
-            if ($pos_full !== false) {
-                $match_length = strlen($search_with_full);
-                return substr_replace($subject, $replace, $pos_full, $match_length);
-            }
+        // 3. 尝试替换 (只替换1次)
+        // preg_replace 的第4个参数限制替换次数
+        $result = preg_replace($regex, $replace, $subject, 1, $count);
+
+        // 如果发生了替换 ($count > 0)，直接返回结果
+        if ($count > 0) {
+            return $result;
         }
     }
 
-    // 如果找到了直接匹配
-    if ($pos !== false) {
-        return substr_replace($subject, $replace, $pos, strlen($search_clean));
-    }
-
+    // 没找到匹配，返回原文
     return $subject;
 }
 
