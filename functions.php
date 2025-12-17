@@ -371,27 +371,3 @@ add_filter('acf/update_value/name=_company_place_holder', function ($value, $pos
     // 直接返回 false 或原值，不做任何更新
     return null;
 }, 10, 3);
-
-
-/**
- * 删除 company 文章时，删除对应的 RSSModel 数据
- */
-add_action('before_delete_post', function ($post_id) {
-
-    // 只处理你的自定义 post type
-    if (get_post_type($post_id) !== 'company') {
-        return;
-    }
-
-    try {
-        // 删除所有 company_id = $post_id 的记录
-        RssModel::query()
-            ->where('company_id', $post_id)
-            ->delete();
-
-        error_log("已删除 RssModel 中 company_id = $post_id 的数据");
-
-    } catch (Exception $e) {
-        error_log("删除 RssModel 数据失败: " . $e->getMessage());
-    }
-});

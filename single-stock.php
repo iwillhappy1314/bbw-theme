@@ -180,7 +180,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
                             $company_description = mb_strimwidth(strip_tags($company->post_excerpt), 0, 120, "…");
                             ?>
 
-                            <?= bbw_str_replace_first($company_name, "<a target=_blank href='$url'>$company_name</a>", $company_description); ?>
+                            <?= ltrim(bbw_str_replace_first($company_name, "<a target=_blank href='$url'>$company_name</a>", $company_description),'c'); ?>
                             <a href="#" id="rs-more-link">More</a>
                         </div>
                     </div>
