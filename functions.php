@@ -4,6 +4,7 @@
  *
  * @package HelloElementorChild
  */
+
 define('TEMPLATE_DIRECTORY', get_template_directory() . '-master-child24');
 define('TEMPLATE_URL', get_template_directory_uri() . '-master-child24');
 
@@ -371,3 +372,19 @@ add_filter('acf/update_value/name=_company_place_holder', function ($value, $pos
     // 直接返回 false 或原值，不做任何更新
     return null;
 }, 10, 3);
+
+
+add_filter('map_meta_cap', function($caps, $cap, $user_id, $args) {
+    // 判断是否是删除文章的操作
+    if ( in_array($cap, ['delete_post', 'delete_page']) && !empty($args[0]) ) {
+        $post_id = $args[0];
+        $post = get_post($post_id);
+
+        // 判断文章类型
+        if ($post && $post->post_type === 'company') {
+            // 强制禁止删除
+            $caps[] = 'do_not_allow';
+        }
+    }
+    return $caps;
+}, 10, 4);

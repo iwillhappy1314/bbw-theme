@@ -42,7 +42,7 @@ $currency = (empty($stock_currency) || $stock_currency === '$') ? 'US$' : $stock
 
                         <?php if (has_post_thumbnail($company_id)) { ?>
                             <div class="max-w-24 inline-flex items-center">
-                                <?php echo get_the_post_thumbnail($company_id, 'full'); ?>
+                                <?php echo get_the_post_thumbnail($company_id, 'full', ['class' => 'h-[34px] w-auto']); ?>
                             </div>
                         <?php } else { ?>
                             <div class="max-w-24 inline-flex items-center">
