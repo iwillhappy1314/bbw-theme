@@ -388,3 +388,66 @@ add_filter('map_meta_cap', function($caps, $cap, $user_id, $args) {
     }
     return $caps;
 }, 10, 4);
+
+/**
+ * 防止 stock 类型文章标题重复
+ * 新增或更新 stock 文章时，检查是否已存在相同标题的文章
+ */
+add_filter('wp_insert_post_data', function($data, $postarr) {
+    // 仅检查 stock 类型
+    if ($data['post_type'] !== 'stock') {
+        return $data;
+    }
+
+    // 跳过自动保存和修订版本
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $data;
+    }
+
+    // 跳过草稿和自动草稿状态（允许保存草稿，但发布时检查）
+    if (in_array($data['post_status'], ['auto-draft', 'trash'])) {
+        return $data;
+    }
+
+    $title = trim($data['post_title']);
+
+    // 如果标题为空，WordPress 会自动处理，这里不干预
+    if (empty($title)) {
+        return $data;
+    }
+
+    // 查询是否已存在相同标题的 stock 文章
+    $existing_args = array(
+        'post_type'   => 'stock',
+        'post_status' => array('publish', 'pending', 'draft', 'private'),
+        'title'       => $title,
+        'fields'      => 'ids',
+        'numberposts' => 1,
+    );
+
+    // 如果是更新现有文章，排除当前文章
+    if (!empty($postarr['ID'])) {
+        $existing_args['exclude'] = array($postarr['ID']);
+    }
+
+    $existing_posts = get_posts($existing_args);
+
+    if (!empty($existing_posts)) {
+        // 标题重复，拒绝保存
+        // 使用 wp_die 显示错误信息
+        wp_die(
+            sprintf(
+                __('错误：已存在标题为「%s」的股票文章（ID: %d），请使用不同的标题。', 'bamboo'),
+                esc_html($title),
+                $existing_posts[0]
+            ),
+            __('标题重复', 'bamboo'),
+            array(
+                'back_link' => true,
+                'response'  => 403,
+            )
+        );
+    }
+
+    return $data;
+}, 10, 2);
