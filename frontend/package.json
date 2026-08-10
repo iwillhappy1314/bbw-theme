@@ -20,7 +20,7 @@
     "laravel-mix-tailwind": "^0.1.2",
     "laravel-mix-versionhash": "^2.0.1",
     "mix-white-sass-icons": "^0.2.0",
-    "postcss": "^8.4.28",
+    "postcss": "^8.5.23",
     "postcss-loader": "^6.2.1",
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.66.1",
